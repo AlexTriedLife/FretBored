@@ -11,8 +11,6 @@ add_subdirectory(thirdparty/nlohmann_json)
 
 
 add_executable(FretBored src/main.cpp
-        note.cpp
-        note.h
         src/Scale.cpp)
 target_include_directories (FretBored PUBLIC
         includes/atypes
