@@ -3,6 +3,7 @@
 //
 
 #include "../includes/FretBoredApp/Scale.h"
+#include "../includes/FretBoredApp/Chromatic.h"
 
 
 Scale::Scale(const std::string &jsonPath) {
@@ -17,7 +18,7 @@ Scale::Scale(const std::string &jsonPath) {
         ifs >> json;
 
         // Check if file contains a populated array called intervals
-        if (json.contains("intervals") && json["intervals"].is_array() && json["intervals"].size() > 0) {
+        if (json.contains("intervals") && json["intervals"].is_array() && !json["intervals"].empty()) {
             m_intervals = json["intervals"].get<std::vector<int>>();
         }
         // Check if file contains a name
@@ -40,34 +41,30 @@ std::string Scale::getName() const {
 }
 
 std::vector<std::string> Scale::getNotes(std::string &root) const {
-    static const std::vector<std::string> chromatic = {
-        "C", "C#", "D", "D#", "E", "F",
-        "F#", "G", "G#", "A", "A#", "B"
-    };
 
     /*
      *  search for the root note by checking every element from the start of the array to the end of the array
      *  then returning a pointer to the root note which cannot be modified(const_iterator)
     */
 
-   auto it = std::find(chromatic.begin(), chromatic.end(), root);
+   auto it = std::find(CHROMATIC_SCALE.begin(), CHROMATIC_SCALE.end(), root);
     // if the iterator is equal to the end of the vector it means that the root note is not in the vector
-    if (it == chromatic.end()) {
+    if (it == CHROMATIC_SCALE.end()) {
         std::cerr << "Root note: " << root << " not found" << std::endl;
         return {};
     }
 
     //  finds the distance(index) of the pointer from the start of the vector
     //  ex: if the root is D the root index will be equal to 2
-    const int rootIndex = std::distance(chromatic.begin(), it);
+    const int rootIndex = std::distance(CHROMATIC_SCALE.begin(), it);
 
     // Build the scale
     std::vector<std::string> scale;
     for (int interval: m_intervals) {
         // add the index of the next note to the index of the root we use
         // then modulo by the size of the array to prevent out of bounds indexing / wrap around
-        int noteIndex = (rootIndex + interval) % chromatic.size();
-        scale.push_back(chromatic[noteIndex]);
+        int noteIndex = (rootIndex + interval) % CHROMATIC_SCALE_SIZE;
+        scale.push_back(CHROMATIC_SCALE[noteIndex]);
 
     }
 

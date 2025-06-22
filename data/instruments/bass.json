@@ -1,0 +1,30 @@
+{
+  "name": "Bass",
+  "string_count": 4,
+  "tuning": {
+    "Standard": [
+      "E",
+      "A",
+      "D",
+      "G"
+    ],
+    "Half Step Down": [
+      "Eb",
+      "Ab",
+      "Db",
+      "Gb"
+    ],
+    "Full Step Down": [
+      "D",
+      "G",
+      "C",
+      "F"
+    ],
+    "Drop-D": [
+      "D",
+      "A",
+      "D",
+      "G"
+    ]
+  }
+}

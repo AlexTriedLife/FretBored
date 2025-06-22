@@ -9,11 +9,17 @@ file(COPY ${CMAKE_SOURCE_DIR}/data DESTINATION ${CMAKE_BINARY_DIR})
 set(JSON_Install OFF CACHE INTERNAL "")
 add_subdirectory(thirdparty/nlohmann_json)
 
-
-add_executable(FretBored src/main.cpp
-        src/Scale.cpp)
-target_include_directories (FretBored PUBLIC
+# Library
+add_library(FretBoredLib
+        src/Scale.cpp
+        src/Instrument.cpp
+        src/Fret.cpp
+)
+target_include_directories (FretBoredLib PUBLIC
         includes/atypes
         includes/FretBoredApp
 )
-target_link_libraries(FretBored PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(FretBoredLib PUBLIC nlohmann_json::nlohmann_json)
+# Executable
+add_executable(FretBored src/main.cpp)
+target_link_libraries(FretBored PRIVATE FretBoredLib)

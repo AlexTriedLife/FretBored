@@ -1,0 +1,38 @@
+{
+  "name": "Guitar",
+  "string_count": 6,
+  "tuning": {
+    "Standard": [
+      "E",
+      "A",
+      "D",
+      "G",
+      "B",
+      "E"
+    ],
+    "Half Step Down": [
+      "Eb",
+      "Ab",
+      "Db",
+      "Gb",
+      "Bb",
+      "Eb"
+    ],
+    "Full Step Down": [
+      "D",
+      "G",
+      "C",
+      "F",
+      "A",
+      "D"
+    ],
+    "Drop-D": [
+      "D",
+      "A",
+      "D",
+      "G",
+      "B",
+      "E"
+    ]
+  }
+}
