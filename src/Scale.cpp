@@ -50,7 +50,6 @@ std::vector<std::string> Scale::getNotes(std::string &root) const {
    auto it = std::find(CHROMATIC_SCALE.begin(), CHROMATIC_SCALE.end(), root);
     // if the iterator is equal to the end of the vector it means that the root note is not in the vector
     if (it == CHROMATIC_SCALE.end()) {
-        std::cerr << "Root note: " << root << " not found" << std::endl;
         return {};
     }
 
