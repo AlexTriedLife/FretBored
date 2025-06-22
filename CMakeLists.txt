@@ -5,9 +5,20 @@ set(CMAKE_CXX_STANDARD 20)
 # Copy data to build directory
 # This currently does not update
 file(COPY ${CMAKE_SOURCE_DIR}/data DESTINATION ${CMAKE_BINARY_DIR})
+
+enable_testing()
 # Disable JSON Install
 set(JSON_Install OFF CACHE INTERNAL "")
 add_subdirectory(thirdparty/nlohmann_json)
+#Testing
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/heads/main.zip
+)
+FetchContent_MakeAvailable(googletest)
+enable_testing()
+add_subdirectory(tests)
 
 # Library
 add_library(FretBoredLib
